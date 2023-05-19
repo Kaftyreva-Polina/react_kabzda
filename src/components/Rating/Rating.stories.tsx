@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import {Rating} from "./Rating";
-
-
+import type {Meta, StoryObj} from "@storybook/react";
+import {Rating, RatingValueType} from "./Rating";
+import {useState} from "react";
 
 
 const meta: Meta<typeof Rating> = {
-    title: 'Rating',
+    title: "Rating",
     component: Rating,
+    argTypes: {onClick: {action: "rating was changed"}},
 };
 
 export default meta;
@@ -47,4 +47,14 @@ export const Rating5: Story = {
         value: 5,
     },
 };
+
+const RatingWithHooks = () => {
+    let [rating, setRating] = useState<RatingValueType>(0)
+
+    return <Rating value={rating} onClick={setRating}/>
+}
+
+export const RatingChange: Story = {
+    render: () => <RatingWithHooks/>
+}
 
