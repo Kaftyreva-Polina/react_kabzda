@@ -5,11 +5,6 @@ import {Rating, RatingValueType} from "./components/Rating/Rating";
 import OnOff from "./components/OnOff/OnOff";
 import {UncontrolledRating} from "./components/UncontrolledRating/UncontrolledRating";
 import {UncontrolledOnOff} from "./components/UncontrolledOnOff/UncontrolledOnOff";
-import {
-    ControlledInputWithFixedValue, GetValueOfUncontrolledInputByButtonPress,
-    TrackValueOfUncontrolledInput,
-    UncontrolledInput
-} from "./components/Input/Input";
 
 
 function App() {
@@ -45,11 +40,6 @@ function App() {
             {/*<Rating value={3}/>*/}
             {/*<Rating value={4}/>*/}
             {/*<Rating value={5}/>*/}
-            <UncontrolledInput />
-            <ControlledInputWithFixedValue />
-            <TrackValueOfUncontrolledInput />
-            <GetValueOfUncontrolledInputByButtonPress />
-
         </div>
     );
 }
