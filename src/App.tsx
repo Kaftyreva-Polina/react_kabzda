@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import "./App.css";
 import {Accordion} from "./components/Accordion/Accordion";
 import {Rating, RatingValueType} from "./components/Rating/Rating";
-import {UncontrolledRating} from "./components/UncontrolledRating/UncontrolledRating";
 import {UncontrolledOnOff} from "./components/UncontrolledOnOff/UncontrolledOnOff";
 import {OnOff} from "./components/OnOff/OnOff";
 
@@ -18,7 +17,6 @@ function App() {
         <div className={"App"}>
             <UncontrolledOnOff onChange={setSwitchOn}/> {switchOn.toString()}
             <OnOff on={switchOn} onChange={setSwitchOn}/>
-            <UncontrolledRating/>
             <Accordion titleValue={"Users"}
                        collapsed={accordionCollapsed}
                        onChange={() => {
@@ -29,14 +27,14 @@ function App() {
     );
 }
 
-type PageTitlePropsType = {
-    title: string
-}
-
-function PageTitle(props: PageTitlePropsType) {
-    console.log("PageTitle rendering")
-    return <h1>{props.title}</h1>
-}
+// type PageTitlePropsType = {
+//     title: string
+// }
+//
+// function PageTitle(props: PageTitlePropsType) {
+//     console.log("PageTitle rendering")
+//     return <h1>{props.title}</h1>
+// }
 
 
 export default App;
