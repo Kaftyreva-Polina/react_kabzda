@@ -6,6 +6,7 @@ import {useState} from "react";
 const meta: Meta<typeof Accordion> = {
     title: "Accordion",
     component: Accordion,
+    tags: ['autodocs'],
     argTypes: {onChange: {action: "Accordion mode change event fired"}},
 };
 

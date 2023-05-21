@@ -5,6 +5,7 @@ import {UncontrolledAccordion} from "./UncontrolledAccordion";
 const meta: Meta<typeof UncontrolledAccordion> = {
     title: "UncontrolledAccordion",
     component: UncontrolledAccordion,
+    tags: ['autodocs'],
     parameters: {
         action: "Accordion mode change event fired"
     }

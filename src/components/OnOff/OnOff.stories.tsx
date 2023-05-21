@@ -6,6 +6,7 @@ import {useState} from "react";
 const meta: Meta<typeof OnOff> = {
     title: "OnOff",
     component: OnOff,
+    tags: ['autodocs'],
     argTypes: {onChange: {action: "on or off clicked"}},
 };
 

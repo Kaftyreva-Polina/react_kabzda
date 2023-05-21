@@ -5,6 +5,7 @@ import {UncontrolledOnOff} from "./UncontrolledOnOff";
 const meta: Meta<typeof UncontrolledOnOff> = {
     title: "UncontrolledOnOff",
     component: UncontrolledOnOff,
+    tags: ['autodocs'],
     argTypes: {onChange: {action: "on or off clicked"}},
 };
 

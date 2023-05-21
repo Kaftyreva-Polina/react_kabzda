@@ -6,6 +6,7 @@ import {UncontrolledRating} from "./UncontrolledRating";
 const meta: Meta<typeof UncontrolledRating> = {
     title: "UncontrolledRating",
     component: UncontrolledRating,
+    tags: ['autodocs'],
     argTypes: {onChange: {action: "rating was changed inside component"}},
 };
 

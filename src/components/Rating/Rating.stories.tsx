@@ -6,6 +6,7 @@ import {useState} from "react";
 const meta: Meta<typeof Rating> = {
     title: "Rating",
     component: Rating,
+    tags: ['autodocs'],
     argTypes: {onClick: {action: "rating was changed"}},
 };
 
