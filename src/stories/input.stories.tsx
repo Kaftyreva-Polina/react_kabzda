@@ -73,9 +73,7 @@ export const ControlledCheckbox: Story = {
 
 const ControlledSelectWithHooks = () => {
     const [parentValue, setParentValue] = useState<string | undefined>(undefined)
-    debugger
     const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        debugger
         setParentValue(e.currentTarget.value)
     }
     return <select value={parentValue} onChange={onChange}>
@@ -86,7 +84,7 @@ const ControlledSelectWithHooks = () => {
     </select>
 }
 export const ControlledSelect: Story = {
-    render: () => <ControlledSelectWithHooks />
+    render: () => <ControlledSelectWithHooks/>
 }
 
 export const ControlledInputWithFixedValue: Story = {
