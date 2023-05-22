@@ -4,7 +4,7 @@ import {ChangeEvent, useRef, useState} from "react";
 const Input = () => <input/>
 const meta: Meta<typeof Input> = {
     title: "Example/Input",
-    tags: ['autodocs'],
+    tags: ["autodocs"],
 };
 
 export default meta;
@@ -45,6 +45,48 @@ const InputWithButtonAndRef = () => {
 
 export const GetValueOfUncontrolledInputByButtonPress: Story = {
     render: () => <InputWithButtonAndRef/>
+}
+
+const ControlledInputWithHooks = () => {
+    const [parentValue, setParentValue] = useState("")
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setParentValue(e.currentTarget.value)
+    }
+
+    return <input value={parentValue} onChange={onChange}/>
+}
+export const ControlledInput: Story = {
+    render: () => <ControlledInputWithHooks/>
+}
+
+const ControlledCheckboxWithHooks = () => {
+    const [parentValue, setParentValue] = useState(true)
+
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setParentValue(e.currentTarget.checked)
+    }
+    return <input type="checkbox" checked={parentValue} onChange={onChange}/>
+}
+export const ControlledCheckbox: Story = {
+    render: () => <ControlledCheckboxWithHooks/>
+}
+
+const ControlledSelectWithHooks = () => {
+    const [parentValue, setParentValue] = useState<string | undefined>(undefined)
+    debugger
+    const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        debugger
+        setParentValue(e.currentTarget.value)
+    }
+    return <select value={parentValue} onChange={onChange}>
+        <option>none</option>
+        <option value={"1"}>Moscow</option>
+        <option value={"2"}>Saint-Petersburg</option>
+        <option value={"3"}>Kaliningrad</option>
+    </select>
+}
+export const ControlledSelect: Story = {
+    render: () => <ControlledSelectWithHooks />
 }
 
 export const ControlledInputWithFixedValue: Story = {
