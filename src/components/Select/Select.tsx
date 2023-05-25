@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, KeyboardEvent, useEffect} from "react";
 import styles from "./Select.module.css"
 
 type ItemType = {
@@ -23,9 +23,34 @@ export function Select(props: SelectPropsType) {
         toggleItems()
     }
 
+    useEffect(() => {
+        setHoveredElementValue(props.value)
+    }, [props.value])
+
+    const onKeyUp = (e: KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+            for (let i = 0; i < props.items.length; i++) {
+                if (props.items[i].value === hoveredElementValue) {
+                    const applicantElement = e.key === "ArrowDown"
+                        ? props.items[i + 1]
+                        : props.items[i - 1]
+                    if (applicantElement) {
+                        props.onChange(applicantElement.value);
+                        return;
+                    }
+                }
+            }
+            if (!selectItem) {
+                props.onChange(props.items[0].value)
+            }
+        }
+        if (e.key === "Enter" || e.key === "Escape") {
+            setActive(false)
+        }
+    }
     return (
         <>
-            <div className={styles.select}>
+            <div tabIndex={0} onKeyUpCapture={onKeyUp} className={styles.select}>
                 <span className={styles.main} onClick={toggleItems}>{
                     selectItem && selectItem.title}</span>
                 {
@@ -43,30 +68,5 @@ export function Select(props: SelectPropsType) {
             </div>
         </>
     )
-
-
-    // <div className={styles.select + " " + (active ? styles.active : "")}>
-
-    // let [parentValue, setParentValue] = useState("Help")
-
-    // const onClickBoard = () => {
-    //     return <span className={"select"}>{parentValue}</span>
-    // }
-    // return <div className={"select"}>
-    //     <div className={"select_header"}>
-    //         <span className={"select_current"} onClick={onClickBoard}>{parentValue }</span>
-    //         <div className={"select_icon"}>&times;</div>
-    //     </div>
-    //     <div className={"select_body"}>
-    //         {props.items.map(el => <div className="select_item">{el.title}</div>)}
-    //         {/*<div className={"select_item"}>Value_1</div>*/}
-    //         {/*<div className={"select_item"}>Value_2</div>*/}
-    //         {/*<div className={"select_item"}>Value_3</div>*/}
-    //         {/*<div className={"select_item"}>Value_4</div>*/}
-    //     </div>
-
-    // </div>
-
-
 }
 

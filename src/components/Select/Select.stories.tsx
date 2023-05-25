@@ -28,18 +28,8 @@ const WithValueWithHooks = () => {
 }
 
 export const BaseExampleWithValue: Story = {
-    render: () => <WithValueWithHooks />
+    render: () => <WithValueWithHooks/>
 }
-// export const BaseExampleWithValue: Story = {
-//     args: {
-//         value: "2",
-//         items: [
-//             {value: "1", title: "Smth1"},
-//             {value: "2", title: "Smth2"},
-//             {value: "3", title: "Smth3"}
-//         ]
-//     },
-// };
 
 const WithoutValueWithHooks = () => {
     const [value, setValue] = useState(null)
@@ -50,20 +40,10 @@ const WithoutValueWithHooks = () => {
             {value: "2", title: "Smth2"},
             {value: "3", title: "Smth3"}
         ]
-        } />
+        }/>
     </>
 }
 
 export const BaseExampleWithoutValue: Story = {
-    render: () => <WithoutValueWithHooks />
+    render: () => <WithoutValueWithHooks/>
 }
-// export const BaseExampleWithoutValue: Story = {
-//     args: {
-//         items: [
-//             {value: "1", title: "Smth1"},
-//             {value: "2", title: "Smth2"},
-//             {value: "3", title: "Smth3"}
-//         ]
-//     },
-// };
-
