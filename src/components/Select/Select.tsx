@@ -15,6 +15,7 @@ type SelectPropsType = {
 export function Select(props: SelectPropsType) {
     const [active, setActive] = useState(false)
     const [hoveredElementValue, setHoveredElementValue] = useState(props.value)
+
     const selectItem = props.items.find(i => i.value === props.value)
     const hoveredItem = props.items.find(i => i.value === hoveredElementValue)
     const toggleItems = () => setActive(!active)
