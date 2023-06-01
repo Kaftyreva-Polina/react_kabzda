@@ -7,10 +7,6 @@ export type StateType = {
     collapsed: boolean
 }
 export const reducer = (state: StateType, action: ActionType): StateType => {
-    // console.log("REDUCER-START")
-    // console.log(state)
-    // console.log(action)
-    // console.log("REDUCER FINISH")
 
     switch (action.type) {
         case TOGGLE_COLLAPSED:
@@ -21,9 +17,4 @@ export const reducer = (state: StateType, action: ActionType): StateType => {
         default:
             throw new Error("Bad action type")
     }
-
-    // if (action.type === TOGGLE_CONSTANT) {
-    //     return !state;
-    // }
-    // return state;
 }

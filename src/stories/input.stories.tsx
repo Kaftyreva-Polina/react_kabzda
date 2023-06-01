@@ -1,3 +1,4 @@
+import React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import {ChangeEvent, useRef, useState} from "react";
 
@@ -14,7 +15,7 @@ export const UncontrolledInput: Story = {
     render: () => <input type="text"/>
 }
 
-const InputWithUseStateHook = () => {
+const InputWithUseStateHookInitial = () => {
     const [value, setValue] = useState("")
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         const actualValue = event.currentTarget.value;
@@ -24,11 +25,13 @@ const InputWithUseStateHook = () => {
         <input type="text" onChange={onChange}/> - {value}
     </>
 }
+
+const InputWithUseStateHook = React.memo(InputWithUseStateHookInitial);
 export const TrackValueOfUncontrolledInput: Story = {
     render: () => <InputWithUseStateHook/>
 }
 
-const InputWithButtonAndRef = () => {
+const InputWithButtonAndRefInitial = () => {
     const [value, setValue] = useState("")
     const inputRef = useRef<HTMLInputElement>(null)
 
@@ -43,11 +46,13 @@ const InputWithButtonAndRef = () => {
     </>
 }
 
+const InputWithButtonAndRef = React.memo(InputWithButtonAndRefInitial);
+
 export const GetValueOfUncontrolledInputByButtonPress: Story = {
     render: () => <InputWithButtonAndRef/>
 }
 
-const ControlledInputWithHooks = () => {
+const ControlledInputWithHooksInitial = () => {
     const [parentValue, setParentValue] = useState("")
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setParentValue(e.currentTarget.value)
@@ -55,11 +60,13 @@ const ControlledInputWithHooks = () => {
 
     return <input value={parentValue} onChange={onChange}/>
 }
+
+const ControlledInputWithHooks = React.memo(ControlledInputWithHooksInitial);
 export const ControlledInput: Story = {
     render: () => <ControlledInputWithHooks/>
 }
 
-const ControlledCheckboxWithHooks = () => {
+const ControlledCheckboxWithHooksInitial = () => {
     const [parentValue, setParentValue] = useState(true)
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -67,11 +74,13 @@ const ControlledCheckboxWithHooks = () => {
     }
     return <input type="checkbox" checked={parentValue} onChange={onChange}/>
 }
+
+const ControlledCheckboxWithHooks = React.memo(ControlledCheckboxWithHooksInitial);
 export const ControlledCheckbox: Story = {
     render: () => <ControlledCheckboxWithHooks/>
 }
 
-const ControlledSelectWithHooks = () => {
+const ControlledSelectWithHooksInitial = () => {
     const [parentValue, setParentValue] = useState<string | undefined>(undefined)
     const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
         setParentValue(e.currentTarget.value)
@@ -83,6 +92,8 @@ const ControlledSelectWithHooks = () => {
         <option value={"3"}>Kaliningrad</option>
     </select>
 }
+
+const ControlledSelectWithHooks = React.memo(ControlledSelectWithHooksInitial);
 export const ControlledSelect: Story = {
     render: () => <ControlledSelectWithHooks/>
 }

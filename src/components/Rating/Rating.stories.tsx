@@ -1,12 +1,12 @@
 import type {Meta, StoryObj} from "@storybook/react";
 import {Rating, RatingValueType} from "./Rating";
-import {useState} from "react";
+import React, {useState} from "react";
 
 
 const meta: Meta<typeof Rating> = {
     title: "Rating",
     component: Rating,
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     argTypes: {onClick: {action: "rating was changed"}},
 };
 
@@ -49,11 +49,13 @@ export const Rating5: Story = {
     },
 };
 
-const RatingWithHooks = () => {
+const RatingWithHooksInitial = () => {
     let [rating, setRating] = useState<RatingValueType>(0)
 
     return <Rating value={rating} onClick={setRating}/>
 }
+
+const RatingWithHooks = React.memo(RatingWithHooksInitial);
 
 export const RatingChange: Story = {
     render: () => <RatingWithHooks/>

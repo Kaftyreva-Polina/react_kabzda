@@ -14,10 +14,6 @@ export function UncontrolledAccordion(props: AccordionPropsType) {
 
     return (
         <div>
-            {/*<AccordionTitle title={props.titleValue} onClick={() => {*/}
-            {/*    setCollapsed(!collapsed)*/}
-            {/*}}/>*/}
-
             <AccordionTitle title={props.titleValue} onClick={() => {
                  dispatch({type: TOGGLE_COLLAPSED})
             }}/>

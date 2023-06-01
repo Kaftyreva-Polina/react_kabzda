@@ -1,12 +1,12 @@
 import type {Meta, StoryObj} from "@storybook/react";
 import {OnOff} from "./OnOff";
-import {useState} from "react";
+import React, {useState} from "react";
 
 
 const meta: Meta<typeof OnOff> = {
     title: "OnOff",
     component: OnOff,
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     argTypes: {onChange: {action: "on or off clicked"}},
 };
 
@@ -25,12 +25,13 @@ export const OffMode: Story = {
     },
 };
 
-const OnOffWithHooks = () => {
+const OnOffWithHooksInitial = () => {
     let [mode, setMode] = useState<boolean>(true)
 
     return <OnOff on={mode} onChange={setMode}/>
 }
 
+const OnOffWithHooks = React.memo(OnOffWithHooksInitial);
 export const ModeChanging: Story = {
     render: () => <OnOffWithHooks/>
 }

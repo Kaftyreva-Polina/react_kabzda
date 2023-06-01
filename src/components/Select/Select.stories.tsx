@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react";
 import {Select} from "./Select";
-import {useState} from "react";
+import React, {useState} from "react";
 
 
 const meta: Meta<typeof Select> = {
@@ -15,7 +15,7 @@ const meta: Meta<typeof Select> = {
 export default meta;
 type Story = StoryObj<typeof Select>;
 
-const WithValueWithHooks = () => {
+const WithValueWithHooksInitial = () => {
     const [value, setValue] = useState("2")
 
     return <>
@@ -27,11 +27,12 @@ const WithValueWithHooks = () => {
     </>
 }
 
+const WithValueWithHooks = React.memo(WithValueWithHooksInitial);
 export const BaseExampleWithValue: Story = {
     render: () => <WithValueWithHooks/>
 }
 
-const WithoutValueWithHooks = () => {
+const WithoutValueWithHooksInitial = () => {
     const [value, setValue] = useState(null)
 
     return <>
@@ -43,6 +44,8 @@ const WithoutValueWithHooks = () => {
         }/>
     </>
 }
+
+const WithoutValueWithHooks = React.memo(WithoutValueWithHooksInitial);
 
 export const BaseExampleWithoutValue: Story = {
     render: () => <WithoutValueWithHooks/>

@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react";
 import {Accordion} from "./Accordion";
-import {useState} from "react";
+import React, {useState} from "react";
 
 
 const meta: Meta<typeof Accordion> = {
@@ -40,7 +40,7 @@ export const UncollapsedMode: Story = {
     },
 };
 
-const AccordionWithHooks = () => {
+const AccordionWithHooksInitial = () => {
     let [value, setValue] = useState(false)
     return <Accordion titleValue={"Users"} collapsed={value} onChange={() => setValue(!value)}
                       items={items} onClick={(value) => {
@@ -48,6 +48,7 @@ const AccordionWithHooks = () => {
     }}/>
 }
 
+const AccordionWithHooks = React.memo(AccordionWithHooksInitial);
 export const AccordionChange: Story = {
     render: () => <AccordionWithHooks/>
 }
