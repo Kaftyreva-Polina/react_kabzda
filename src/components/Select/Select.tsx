@@ -3,13 +3,14 @@ import styles from "./Select.module.css"
 
 type ItemType = {
     title: string
-    value: any
+    value?: any
 }
 
 type SelectPropsType = {
     value?: any
     onChange: (value: any) => void
     items: ItemType[]
+    className?: any
 }
 
 export function Select(props: SelectPropsType) {

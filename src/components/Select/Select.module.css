@@ -17,3 +17,13 @@
 }
 
 
+.div {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    width: 30%;
+}
+
+.child {
+    flex-direction: row;
+}
