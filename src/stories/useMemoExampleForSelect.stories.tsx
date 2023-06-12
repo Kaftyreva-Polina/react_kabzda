@@ -1,7 +1,7 @@
 import {Meta, StoryObj} from "@storybook/react";
-import React, {useState} from "react";
+import React, {useMemo, useState} from "react";
 import styles from "../components/Select/Select.module.css";
-import {Select} from "../components/Select/Select";
+import {Select, SelectPropsType} from "../components/Select/Select";
 
 
 const meta: Meta = {
@@ -31,37 +31,67 @@ const itemsForSelect: itemsPropsType[] = [
     {id: 4, value: "9", country: "France", title: "Marseille", population: 870321}
 ]
 
-const UseMemoWithSelect = () => {
+// Дальнейшее повоторение кода сделано исключительно с целью продемонстрировать работу React.memo и useMemo
+//  Further repetition of the code is done solely for the purpose of demonstrating the work of React.memo and useMemo
+const SelectItems1WithoutHOCMemo = (props: SelectPropsType) => {
+    console.log("Select1 was rendered")
 
-    const [counter, setCounter] = useState(0)
+    return <Select value={props.value} onChange={props.onChange} items={props.items}/>
+}
+
+const SelectItems1 = React.memo(SelectItems1WithoutHOCMemo)
+const SelectItems2WithoutHOCMemo = (props: SelectPropsType) => {
+    console.log("Select2 was rendered")
+
+    return <Select value={props.value} onChange={props.onChange} items={props.items}/>
+}
+
+const SelectItems2 = React.memo(SelectItems2WithoutHOCMemo);
+
+const SelectItem3WithoutHOCMemo = (props: SelectPropsType) => {
+    console.log("Select3 was rendered")
+
+    return <Select value={props.value} onChange={props.onChange} items={props.items}/>
+}
+
+const SelectItems3 = React.memo(SelectItem3WithoutHOCMemo);
+
+const Example = () => {
+    const [value1, setValue1] = useState("2");
+    const [value2, setValue2] = useState("5");
+    const [value3, setValue3] = useState("1");
+    const [counter, setCounter] = useState(0);
+
+    const filteredItemsByCountry = useMemo(() => {
+        return itemsForSelect.filter((el => el.country === "France"))
+    }, [itemsForSelect])
+
+    const filteredItemsByLetter = useMemo(() => {
+        return itemsForSelect.filter(el => el.title.toLowerCase().indexOf("n") > -1);
+    }, [itemsForSelect])
 
 
-    const [value1, setValue1] = useState("2")
-    const [value2, setValue2] = useState("5")
-    const [value3, setValue3] = useState("1")
+    const filteredItemsByPopulation = useMemo(() => {
+        return itemsForSelect.filter(el => el.population > 400000)
+    }, [itemsForSelect])
 
-
-    const itemsFilteredByCountry = itemsForSelect.filter(el => el.country === "France");
-    const itemsFilteredByLetter = itemsForSelect.filter(el => el.title.toLowerCase().indexOf("n") > -1);
-    const itemsFilteredByPopulation = itemsForSelect.filter(el => el.population > 400000);
-
-    const onClickHandler = () => setCounter(counter + 1)
     return <>
+        <div className={styles.div}>
+            <SelectItems1 className={styles.child} value={value1} onChange={setValue1} items={filteredItemsByCountry}/>
+            <SelectItems2 className={styles.child} value={value2} onChange={setValue2} items={filteredItemsByLetter}/>
+            <SelectItems3 className={styles.child} value={value3} onChange={setValue3}
+                          items={filteredItemsByPopulation}/>
+        </div>
         <div>
             {counter}
-            <button onClick={onClickHandler}>add count</button>
-        </div>
-        <div className={styles.div}>
-            <Select className={styles.child} value={value1} onChange={setValue1} items={itemsFilteredByCountry}/>
-            <Select className={styles.child} value={value2} onChange={setValue2} items={itemsFilteredByLetter}/>
-            <Select className={styles.child} value={value3} onChange={setValue3} items={itemsFilteredByPopulation}/>
+            <button onClick={() => setCounter(counter + 1)}>+</button>
         </div>
     </>
-
 }
 
 export const HelpExample: Story = {
-    render: () => <UseMemoWithSelect/>
+    render: () => <Example/>
 }
+
 
 
