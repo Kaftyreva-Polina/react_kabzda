@@ -1,5 +1,5 @@
 import {Meta, StoryObj} from "@storybook/react";
-import React, {useMemo, useState} from "react";
+import React, {useCallback, useMemo, useState} from "react";
 
 
 const meta: Meta = {
@@ -84,4 +84,59 @@ const HelpsToReactMemoWithHooks = () => {
 }
 export const HelpsToReactMemo: Story = {
     render: () => <HelpsToReactMemoWithHooks/>
+}
+
+
+type BookSecretPropsType = {
+    books: string[]
+    addBook: () => void
+}
+const SecretBooks = (props: BookSecretPropsType) => {
+    console.log("BOOK SECRET")
+    return <div>
+        <button onClick={() => props.addBook()}>add book</button>
+        {props.books.map((book, i) => <div key={i}>{book}</div>)}
+    </div>
+}
+
+const Books = React.memo(SecretBooks);
+const LikeUseCallbackWithHooks = () => {
+    console.log("LikeUseCallback")
+    const [counter, setCounter] = useState(0);
+    const [books, setBooks] = useState(["React", "JS", "Redux"]);
+
+    const newArray = useMemo(() => {
+        return books.filter(book => book.toLowerCase().indexOf("a") > -1)
+    }, [books])
+
+
+    const addBook = () => {
+        console.log(books)
+        const newBooks = [...books, "Angular" + new Date().getTime()];
+        setBooks(newBooks);
+    }
+
+    const memoizedBooks = useMemo(() => {
+        return () => {
+            console.log(books)
+            const newBooks = [...books, "Angular" + new Date().getTime()];
+            setBooks(newBooks);
+        }
+    }, [books])
+
+    const memoizedBooks2 = useCallback(() => {
+        console.log(books)
+        const newBooks = [...books, "Angular" + new Date().getTime()];
+        setBooks(newBooks);
+    }, [books])
+
+    return <>
+        <button onClick={() => setCounter(counter + 1)}>+</button>
+        {counter}
+        <Books books={newArray} addBook={memoizedBooks2} />
+    </>
+}
+
+export const LikeUseCallback: Story = {
+    render: () => <LikeUseCallbackWithHooks />
 }
