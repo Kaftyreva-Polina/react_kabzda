@@ -1,6 +1,7 @@
 import React from "react";
 import {Meta, StoryObj} from "@storybook/react";
-import {Clock} from "../components/Clock/Clock";
+import {Clock} from "./Clock";
+import {Clock1} from "./Clock1";
 
 
 const meta: Meta = {
@@ -12,8 +13,12 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj<typeof Clock>;
 
-export const Clock1: Story = {
+export const ClockExample: Story = {
     render: () => <Clock />
 }
 
+
+export const BaseExample = () => {
+    return <Clock1 />
+}
 

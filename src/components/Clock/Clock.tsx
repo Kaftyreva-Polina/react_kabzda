@@ -5,16 +5,13 @@ export const Clock = React.memo(() => {
 
     const [date, setDate] = useState<Date>(new Date())
 
-   useEffect(()=> {
-       let timerId = setInterval((() => setDate(new Date())), 1000)
-       setTimeout(() => {clearInterval(timerId); alert("stop")}, 30000)
-   }, [])
-
-    // const stopTimerHandler = useCallback(() => {
-    //     setTimeout(() => {clearInterval(setInterval((() => setDate(new Date())), 1000));
-    //         console.log(("stop"))}, 1000)
-    // }, [])
-
+    useEffect(() => {
+        console.log("tick of first clock")
+        const timerId = setInterval((() => setDate(new Date())), 1000);
+        return () => {
+            clearInterval(timerId)
+        }
+    }, [])
 
     const dateTime = date.toLocaleString()
     const currentTime = date.toLocaleTimeString()
@@ -22,7 +19,6 @@ export const Clock = React.memo(() => {
         <div>
             <time dateTime={dateTime}>
                 {currentTime}
-                {/*<button onClick={stopTimerHandler}>+</button>*/}
             </time>
         </div>
     )
