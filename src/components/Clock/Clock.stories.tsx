@@ -1,24 +1,20 @@
 import React from "react";
-import {Meta, StoryObj} from "@storybook/react";
+import {Meta} from "@storybook/react";
 import {Clock} from "./Clock";
-import {Clock1} from "./Clock1";
 
 
 const meta: Meta = {
-    title: "clock",
+    title: "Clock",
     component: Clock,
     tags: ["autodocs"]
 }
 
 export default meta;
-type Story = StoryObj<typeof Clock>;
 
-export const ClockExample: Story = {
-    render: () => <Clock />
+export const BaseAnalogExample = () => {
+    return <Clock mode="analog"/>
 }
 
-
-export const BaseExample = () => {
-    return <Clock1 />
+export const BaseDigitalExample = () => {
+    return <Clock mode="digital"/>
 }
-
